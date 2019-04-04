@@ -15,10 +15,11 @@ class App extends Component {
   }
 
   render() {
+    const {todos} = this.state;
     return (
       <div>
         <div>To Do List</div>
-        <Todo todos={this.state.todos}></Todo>
+        <Todo todos={todos}></Todo>
       </div>
     );
   }
