@@ -1,8 +1,16 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
+import './App.css';
 
+const TodoSection = ({todos}) => {
+    return (
+        <ul className="todo_section">
+            <TodoList todos={todos}></TodoList>
+        </ul>
+    )
+}
 
-const TodoSection  = ({todos}) => {
+const TodoList  = ({todos}) => {
     const todoList = todos.map(todo => {
         return <TodoItem completeFlag={todo.completeFlag} todoId={todo.todoId} content={todo.content} key={todo.todoId} ></TodoItem>
     })

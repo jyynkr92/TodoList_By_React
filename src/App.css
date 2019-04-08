@@ -1,3 +1,20 @@
-.App {
-  text-align: center;
+
+.todo_main {
+  text-align : center;
+}
+
+h1 {
+  color : #68b7d6;
+}
+
+.todo_header {
+  text-align:center;
+}
+
+.todo_section {
+  display:inline-block;
+}
+
+.todo_footer {
+  text-align:center;
 }

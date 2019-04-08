@@ -8,7 +8,6 @@ import TodoFooter from './TodoFooter';
 class App extends Component {
   state = {
     input : "",
-    id : 1,
     todos : [
       {
         todoId : 1,
@@ -19,7 +18,7 @@ class App extends Component {
   }
 
   addTodo = () => {
-    const {input, todos, id} = this.state;
+    const {input, todos} = this.state;
 
     this.setState({
       input : "",
@@ -42,7 +41,7 @@ class App extends Component {
     const {addTodo, onChange} = this;
 
     return (
-      <div>
+      <div className="todo_main">
         <div><h1>To Do List</h1></div>
         <TodoHeader todos={todos} addTodo={addTodo} change={onChange} input={input}></TodoHeader>
         <TodoSection todos={todos}></TodoSection>
