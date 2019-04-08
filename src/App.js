@@ -36,14 +36,20 @@ class App extends Component {
     });
   }  
 
+  keyEvent = (e) => {
+    if(e.key === "Enter") {
+      this.addTodo();
+    }
+  }
+
   render() {
     const {input, todos} = this.state;
-    const {addTodo, onChange} = this;
+    const {addTodo, onChange, keyEvent} = this;
 
     return (
       <div className="todo_main">
         <div><h1>To Do List</h1></div>
-        <TodoHeader todos={todos} addTodo={addTodo} change={onChange} input={input}></TodoHeader>
+        <TodoHeader todos={todos} addTodo={addTodo} change={onChange} input={input} keyPress={keyEvent}></TodoHeader>
         <TodoSection todos={todos}></TodoSection>
         <TodoFooter todos={todos}></TodoFooter>
       </div>
