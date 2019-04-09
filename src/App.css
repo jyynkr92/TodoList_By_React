@@ -27,3 +27,11 @@ h1 {
 .todoItem {
   cursor : pointer;
 }
+
+.todo_delete {
+  display : none;
+}
+
+.todoItem:hover .todo_delete {
+  display : inline-block;
+}
