@@ -12,7 +12,7 @@ class App extends Component {
       {
         todoId : 1,
         content : "hello world",
-        completeFlag : true
+        completeFlag : false
       }
     ]
   }
@@ -44,20 +44,19 @@ class App extends Component {
 
   toggleTask = (key) => {
     const {todos} = this.state;
-    console.log(key);
+    const testTodo = todos.filter(todo => todo.todoId === key);
+
     const index = todos.findIndex(todo => todo.todoId === key);
-    const selectedTodo = todos[index];
+
     const todoList = [...todos]; // copy array
     todoList[index] = {
-      ...selectedTodo,
-      completeFlag : !selectedTodo.completeFlag
+      ...testTodo[0],
+      completeFlag : !testTodo[0].completeFlag
     };
 
     this.setState({
       todos : todoList
     });
-    
-    console.log(this.state.todos);
   }
 
   render() {
