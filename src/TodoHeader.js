@@ -5,7 +5,11 @@ import './App.css';
 const TodoHeader = ({todos, addTodo, change, input, keyPress}) => {
     return (
         <div className="todo_header">
-            <input className="content_input" onChange={change} onKeyPress={keyPress} value={input} type="text"></input>
+            <label for="inp" class="inp">
+                <input onChange={change} onKeyPress={keyPress} value={input}  type="text" id="inp" placeholder="&nbsp;"/>
+                <span class="label">Write Todo</span>
+                <span class="border"></span>
+            </label>
             <span className="add_span" onClick={addTodo}><img src="/img/add.png" alt="addTodo"/></span>
         </div>
     );
