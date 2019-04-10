@@ -21,8 +21,8 @@ const TodoList  = ({todos, toggleTask, deleteTask}) => {
 const TodoItem = ({completeFlag, todoId, content, toggleTask, deleteTask}) => {
     return(
         <li className={[completeFlag === true? "todo_complete" : "todo_progress", "todoItem"].join(" ")} key={todoId}>
-            <span className="todo_content" onClick={() => toggleTask(todoId)}>{content}</span>
-            <span className="todo_delete" onClick={() => deleteTask(todoId)}>삭제</span> 
+            <span className="todo_content" onClick={toggleTask} data-selected={todoId} data-hello={content}>{content}</span>
+            <span className="todo_delete" onClick={deleteTask} data-seleted={todoId}>삭제</span> 
         </li>
     )
 }

@@ -21,7 +21,6 @@ class App extends Component {
     const {input, todos} = this.state;
 
     this.setState({
-      input : "",
       todos : todos.concat({
         todoId : todos.length + 1,
         content : input,
@@ -42,27 +41,26 @@ class App extends Component {
     }
   }
 
-  toggleTask = (key) => {
+  toggleTask = (event) => {
+    const {selected, hello} = event.target.dataset;
+    console.log(hello); //for event.target.dataset test
     const {todos} = this.state;
-    const selectedTodo = todos.filter(todo => todo.todoId === key);
-
-    const index = todos.findIndex(todo => todo.todoId === key);
-
-    const todoList = [...todos]; // copy array
-    todoList[index] = {
-      ...selectedTodo[0],
-      completeFlag : !selectedTodo[0].completeFlag
-    };
+    console.log(selected);
+    const todoList = todos.map(todo => {
+      return todo.todoId === Number(selected) ? {...todo, completeFlag:!todo.completeFlag} : {...todo}
+    });
 
     this.setState({
       todos : todoList
     });
   }
 
-  deleteTask = (key) => {
+  deleteTask = (event) => {
     const {todos} = this.state;
+    const {selected} = event.target.dataset;
+
     this.setState ({
-      todos : todos.filter(todo => todo.todoId !== key)
+      todos : todos.filter(todo => todo.todoId !== Number(selected))
     });
   }
 
