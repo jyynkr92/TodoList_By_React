@@ -8,6 +8,7 @@ import TodoFooter from './TodoFooter';
 class App extends Component {
   state = {
     input : "",
+    lastTodoId : 1,
     todos : [
       {
         todoId : 1,
@@ -18,11 +19,13 @@ class App extends Component {
   }
 
   addTodo = () => {
-    const {input, todos} = this.state;
+    const {input, todos, lastTodoId} = this.state;
 
     this.setState({
+      input : "",
+      lastTodoId : lastTodoId + 1,
       todos : todos.concat({
-        todoId : todos.length + 1,
+        todoId : lastTodoId + 1,
         content : input,
         completeFlag : false
       })
@@ -42,10 +45,8 @@ class App extends Component {
   }
 
   toggleTask = (event) => {
-    const {selected, hello} = event.target.dataset;
-    console.log(hello); //for event.target.dataset test
+    const {selected} = event.target.dataset;
     const {todos} = this.state;
-    console.log(selected);
     const todoList = todos.map(todo => {
       return todo.todoId === Number(selected) ? {...todo, completeFlag:!todo.completeFlag} : {...todo}
     });
@@ -58,7 +59,6 @@ class App extends Component {
   deleteTask = (event) => {
     const {todos} = this.state;
     const {selected} = event.target.dataset;
-
     this.setState ({
       todos : todos.filter(todo => todo.todoId !== Number(selected))
     });
@@ -72,7 +72,9 @@ class App extends Component {
       <div className="todo_main">
         <div><h1>To Do List</h1></div>
         <TodoHeader todos={todos} addTodo={addTodo} change={onChange} input={input} keyPress={keyEvent}></TodoHeader>
-        <TodoSection todos={todos} toggleTask={toggleTask} deleteTask={deleteTask}></TodoSection>
+        <div className="todo_div">
+          <TodoSection todos={todos} toggleTask={toggleTask} deleteTask={deleteTask}></TodoSection>
+        </div>
         <TodoFooter todos={todos}></TodoFooter>
       </div>
     );

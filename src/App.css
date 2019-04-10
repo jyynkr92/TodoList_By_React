@@ -1,37 +1,85 @@
 
 .todo_main {
   text-align : center;
+  width: 520px;
+  margin: auto;
+  background-color: #bcf4f5;
+  border: 1px solid #00bdb8;
 }
 
 h1 {
-  color : #68b7d6;
+  color : #1f7292;
 }
 
 .todo_header {
   text-align:center;
+  border-bottom: 1px solid #6fe2d5;
+  padding-bottom: 10px;
 }
 
 .todo_section {
-  display:inline-block;
+  display: inline-block;
+  width: 86%;
+  margin: auto;
+  padding-left: 0px;
 }
 
 .todo_footer {
   text-align:center;
+  margin-top : 10px;
+  padding-bottom : 10px;
 }
 
-.todo_complete {
+.todo_complete .todo_content {
   color : #c7c2c2b2;
   text-decoration: line-through;
 }
 
 .todoItem {
   cursor : pointer;
+  border-bottom: 1px solid #d9d9d9;
+  padding: 10px;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
 }
 
 .todo_delete {
-  display : none;
+  visibility: hidden;
+  margin-right : 10px;
+  float : right;
 }
 
+.content_input {
+  width:80%;
+  height:20px;
+}
+
+.add_span {
+  margin-left : 10px;
+}
+
+.todo_header .add_span img {
+  vertical-align : middle;
+  width : 21px;
+  height : 21px;
+}
+.todo_delete img {
+  width : 17px;
+  height : 17px;
+}
 .todoItem:hover .todo_delete {
-  display : inline-block;
+  visibility: visible;
+}
+
+.todo_content {
+  width: 90%;
+  display: inline-block;
+}
+
+.todo_div {
+  background-color : #ffffff;
+  border-bottom: 1px solid #6fe2d5;
+  padding-bottom: 10px;
+
 }
