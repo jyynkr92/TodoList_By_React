@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/TodoList_By_React/static/js/runtime~main.95d20637.js"
   },
   {
-    "revision": "5b5115fe36e6964a15ba",
-    "url": "/TodoList_By_React/static/js/main.7f2b75af.chunk.js"
+    "revision": "7a82452240cda9563607",
+    "url": "/TodoList_By_React/static/js/main.d7edbfd8.chunk.js"
   },
   {
-    "revision": "c6bd0d203e320d08a191",
-    "url": "/TodoList_By_React/static/js/2.58b98f68.chunk.js"
+    "revision": "2ce59233543d3a3f771d",
+    "url": "/TodoList_By_React/static/js/2.d654cb7c.chunk.js"
   },
   {
-    "revision": "5b5115fe36e6964a15ba",
+    "revision": "7a82452240cda9563607",
     "url": "/TodoList_By_React/static/css/main.78290453.chunk.css"
   },
   {
-    "revision": "fce3ceec9bde8886e64864b3859d27a2",
+    "revision": "99e3cf6cbd8f20b4522d3f4df733a214",
     "url": "/TodoList_By_React/index.html"
   }
 ];
