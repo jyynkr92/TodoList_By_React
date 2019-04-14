@@ -10,7 +10,7 @@ const TodoHeader = ({todos, addTodo, change, input, keyPress}) => {
                 <span class="label">Write Todo</span>
                 <span class="border"></span>
             </label>
-            <span className="add_span" onClick={addTodo}><img src="/img/add.png" alt="addTodo"/></span>
+            <span className="add_span" onClick={addTodo}><img src={require("./img/add.png")} alt="addTodo"/></span>
         </div>
     );
 }

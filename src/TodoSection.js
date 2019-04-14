@@ -22,7 +22,7 @@ const TodoItem = ({completeFlag, todoId, content, toggleTask, deleteTask}) => {
     return(
         <li className={[completeFlag === true? "todo_complete" : "todo_progress", "todoItem"].join(" ")} key={todoId}>
             <span className="todo_content" onClick={toggleTask} data-selected={todoId}>{content}</span>
-            <span className="todo_delete"><img src="/img/delete.png" alt="delete" onClick={deleteTask} data-selected={todoId}/></span> 
+            <span className="todo_delete"><img src={require("/img/delete.png")} alt="delete" onClick={deleteTask} data-selected={todoId}/></span> 
         </li>
     )
 }
