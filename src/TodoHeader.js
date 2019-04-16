@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
+import './App.scss';
 import addImg from './img/add.png';
 
 const TodoHeader = ({todos, addTodo, change, input, keyPress}) => {

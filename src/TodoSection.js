@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
+import './App.scss';
 import deleteImg from './img/delete.png';
 import completeChangeImg from './img/complete_check.png';
 

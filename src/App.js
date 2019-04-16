@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import TodoHeader from './TodoHeader';
 import TodoSection from './TodoSection';
 import TodoFooter from './TodoFooter';
@@ -88,7 +88,7 @@ class App extends Component {
     const todoList = todos.map(todo => {
       return todo.todoId === Number(selected) ? {...todo, content : event.target.defaultValue} : {...todo}
     });
-    
+
     this.setState({
       todos : todoList
     });
