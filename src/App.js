@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.scss';
 import TodoHeader from './TodoHeader';
 import TodoSection from './TodoSection';
 import TodoFooter from './TodoFooter';
+import styles from './CSSModule.module.scss';
 
 class App extends Component {
   state = {
@@ -98,10 +98,10 @@ class App extends Component {
     const {addTodo, onChange, keyEvent, toggleTask, deleteTask, modifyContent, onModified, getContent} = this;
 
     return (
-      <div className="todo_main">
+      <div className={styles.todo_main}>
         <div><h1>To Do List</h1></div>
         <TodoHeader todos={todos} addTodo={addTodo} change={onChange} input={input} keyPress={keyEvent}></TodoHeader>
-        <div className="todo_div">
+        <div className={styles.todo_div}>
           <TodoSection todos={todos} toggleTask={toggleTask} deleteTask={deleteTask} modifyContent={modifyContent} onModified={onModified} getContent={getContent}></TodoSection>
         </div>
         <TodoFooter todos={todos}></TodoFooter>
