@@ -10,7 +10,15 @@ class App extends Component {
     input : "",
     lastTodoId : 1,
     modifyInput : "",
+    showFlag : "A",
     todos : [
+      {
+        todoId : 1,
+        content : "hello world",
+        completeFlag : false
+      }
+    ],
+    allTodos : [
       {
         todoId : 1,
         content : "hello world",
@@ -20,16 +28,18 @@ class App extends Component {
   }
 
   addTodo = () => {
-    const {input, todos, lastTodoId} = this.state;
+    const {input, allTodos, lastTodoId, showFlag} = this.state;
+    const todoList = allTodos.concat({
+      todoId : lastTodoId + 1,
+      content : input,
+      completeFlag : false
+    })
 
     this.setState({
       input : "",
       lastTodoId : lastTodoId + 1,
-      todos : todos.concat({
-        todoId : lastTodoId + 1,
-        content : input,
-        completeFlag : false
-      })
+      allTodos : todoList,
+      todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => !todo.completeFlag): todoList.filter(todo => todo.completeFlag)
     });
   }
 
@@ -53,49 +63,81 @@ class App extends Component {
 
   toggleTask = (event) => {
     const {selected} = event.target.dataset;
-    const {todos} = this.state;
-    const todoList = todos.map(todo => {
+    const {allTodos, showFlag} = this.state;
+    const todoList = allTodos.map(todo => {
       return todo.todoId === Number(selected) ? {...todo, completeFlag:!todo.completeFlag} : {...todo}
     });
 
     this.setState({
-      todos : todoList
+      allTodos : todoList,
+      todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => !todo.completeFlag) : todoList.filter (todo => todo.completeFlag)
     });
   }
 
   deleteTask = (event) => {
-    const {todos} = this.state;
+    const {allTodos, showFlag} = this.state;
     const {selected} = event.target.dataset;
+    const todoList = allTodos.filter(todo => todo.todoId !== Number(selected));
+
     this.setState ({
-      todos : todos.filter(todo => todo.todoId !== Number(selected))
+      allTodos : todoList,
+      todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => todo.todoId !== Number(selected)) : todoList.filter (todo => todo.todoId !== Number(selected))
     });
   }
 
   modifyContent = (event) => {
-    const {todos, modifyInput} = this.state;
+    const {allTodos, modifyInput, showFlag} = this.state;
     const {selected} = event.target.dataset;
-    const todoList = todos.map(todo => {
+    const todoList = allTodos.map(todo => {
       return todo.todoId === Number(selected) ? {...todo, content : modifyInput} : {...todo}
     })
-    console.log(todos);
+
     this.setState({
-      todos : todoList
+      allTodos : todoList,
+      todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => !todo.completeFlag) : todoList.filter (todo => todo.completeFlag)
     });
   }
   getContent = (event) => {
-    const {todos} = this.state;
+    const {allTodos, showFlag} = this.state;
     const {selected} = event.target.dataset;
-    const todoList = todos.map(todo => {
+    const todoList = allTodos.map(todo => {
       return todo.todoId === Number(selected) ? {...todo, content : event.target.defaultValue} : {...todo}
     });
 
     this.setState({
-      todos : todoList
+      allTodos : todoList,
+      todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => !todo.completeFlag) : todoList.filter (todo => todo.completeFlag)
     });
   }
+
+  showAllTodo = () => {
+    const {allTodos} = this.state;
+
+    this.setState({
+      showFlag : "A",
+      todos : allTodos
+    })
+  }
+
+  showDoingTodo = () => {
+    const {allTodos} = this.state;
+    this.setState({
+      showFlag : "D",
+      todos : allTodos.filter(todo => !todo.completeFlag)
+    });
+  }
+
+  showCompleteTodo = () => {
+    const {allTodos} = this.state;
+    this.setState({
+      showFlag : "C",
+      todos : allTodos.filter(todo => todo.completeFlag)
+    });
+  }
+
   render() {
-    const {input, todos} = this.state;
-    const {addTodo, onChange, keyEvent, toggleTask, deleteTask, modifyContent, onModified, getContent} = this;
+    const {input, todos, showFlag} = this.state;
+    const {addTodo, onChange, keyEvent, toggleTask, deleteTask, modifyContent, onModified, getContent, showCompleteTodo, showAllTodo, showDoingTodo} = this;
 
     return (
       <div className={styles.todo_main}>
@@ -104,7 +146,7 @@ class App extends Component {
         <div className={styles.todo_div}>
           <TodoSection todos={todos} toggleTask={toggleTask} deleteTask={deleteTask} modifyContent={modifyContent} onModified={onModified} getContent={getContent}></TodoSection>
         </div>
-        <TodoFooter todos={todos}></TodoFooter>
+        <TodoFooter todos={todos} showAllTodo={showAllTodo} showCompleteTodo={showCompleteTodo} showDoingTodo={showDoingTodo} showFlag={showFlag}></TodoFooter>
       </div>
     );
   }

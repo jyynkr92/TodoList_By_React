@@ -156,6 +156,22 @@
     text-align:center;
     margin-top : 10px;
     padding-bottom : 10px;
+
+    .mode {
+        margin-right : 20px;
+        cursor : pointer;
+        padding : 3px 7px;
+        border  : 1px solid transparent;
+        &:hover {
+            border : 1px solid #6491f7;
+            border-radius : 11px;
+        }
+    }
+
+    .focus {
+        border : 1px solid #6491f7;
+        border-radius : 11px;
+    }
   }
   
   html,
