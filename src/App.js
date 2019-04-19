@@ -11,6 +11,7 @@ class App extends Component {
     lastTodoId : 1,
     modifyInput : "",
     showFlag : "A",
+    leftCount : 1,
     todos : [
       {
         todoId : 1,
@@ -28,7 +29,7 @@ class App extends Component {
   }
 
   addTodo = () => {
-    const {input, allTodos, lastTodoId, showFlag} = this.state;
+    const {input, allTodos, lastTodoId, showFlag, leftCount} = this.state;
     const todoList = allTodos.concat({
       todoId : lastTodoId + 1,
       content : input,
@@ -39,6 +40,7 @@ class App extends Component {
       input : "",
       lastTodoId : lastTodoId + 1,
       allTodos : todoList,
+      leftCount : leftCount + 1,
       todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => !todo.completeFlag): todoList.filter(todo => todo.completeFlag)
     });
   }
@@ -63,24 +65,28 @@ class App extends Component {
 
   toggleTask = (event) => {
     const {selected} = event.target.dataset;
-    const {allTodos, showFlag} = this.state;
+    const {allTodos, showFlag, leftCount} = this.state;
     const todoList = allTodos.map(todo => {
       return todo.todoId === Number(selected) ? {...todo, completeFlag:!todo.completeFlag} : {...todo}
     });
+    const selectedTodo = allTodos.filter(todo => todo.todoId === Number(selected));
 
     this.setState({
       allTodos : todoList,
+      leftCount : selectedTodo[0].completeFlag? leftCount + 1 : leftCount - 1,
       todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => !todo.completeFlag) : todoList.filter (todo => todo.completeFlag)
     });
   }
 
   deleteTask = (event) => {
-    const {allTodos, showFlag} = this.state;
+    const {allTodos, showFlag, leftCount} = this.state;
     const {selected} = event.target.dataset;
     const todoList = allTodos.filter(todo => todo.todoId !== Number(selected));
+    const selectedTodo = allTodos.filter(todo => todo.todoId === Number(selected));
 
     this.setState ({
       allTodos : todoList,
+      leftCount : selectedTodo[0].completeFlag? leftCount : leftCount - 1,
       todos : showFlag === "A"? todoList : showFlag === "D"? todoList.filter(todo => todo.todoId !== Number(selected)) : todoList.filter (todo => todo.todoId !== Number(selected))
     });
   }
@@ -136,7 +142,7 @@ class App extends Component {
   }
 
   render() {
-    const {input, todos, showFlag} = this.state;
+    const {input, todos, showFlag, leftCount} = this.state;
     const {addTodo, onChange, keyEvent, toggleTask, deleteTask, modifyContent, onModified, getContent, showCompleteTodo, showAllTodo, showDoingTodo} = this;
 
     return (
@@ -146,7 +152,7 @@ class App extends Component {
         <div className={styles.todo_div}>
           <TodoSection todos={todos} toggleTask={toggleTask} deleteTask={deleteTask} modifyContent={modifyContent} onModified={onModified} getContent={getContent}></TodoSection>
         </div>
-        <TodoFooter todos={todos} showAllTodo={showAllTodo} showCompleteTodo={showCompleteTodo} showDoingTodo={showDoingTodo} showFlag={showFlag}></TodoFooter>
+        <TodoFooter todos={todos} showAllTodo={showAllTodo} showCompleteTodo={showCompleteTodo} showDoingTodo={showDoingTodo} showFlag={showFlag} leftCount={leftCount}></TodoFooter>
       </div>
     );
   }
