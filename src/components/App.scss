@@ -138,6 +138,7 @@
       display: inline-block;
       height : 24px;
       font-size:11pt;
+      background : none;
     }
 
     .todo_delete {
@@ -157,6 +158,29 @@
   text-align:center;
   margin-top : 10px;
   padding-bottom : 10px;
+
+  .mode {
+      margin-right : 20px;
+      cursor : pointer;
+      padding : 3px 7px;
+      border  : 1px solid transparent;
+      &:hover {
+          border : 1px solid #6491f7;
+          border-radius : 11px;
+      }
+  }
+
+  .focus {
+      border : 1px solid #6491f7;
+      border-radius : 11px;
+  }
+
+  .todoLeft {
+      float : left;
+      margin-left : 10px;
+      font-size: 10pt;
+      margin-top : 3px;
+  }
 }
 
 html,
